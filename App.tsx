@@ -24,38 +24,38 @@ const App: React.FC = () => {
   const NavItem = ({ id, label }: { id: typeof activeTab, label: string }) => (
     <button 
       onClick={() => setActiveTab(id)}
-      className={`px-4 py-2 text-sm font-medium transition-colors relative ${
-        activeTab === id ? 'text-amber-600' : 'text-stone-500 hover:text-stone-900'
+      className={`px-4 py-2 text-sm font-medium transition-all relative ${
+        activeTab === id ? 'text-gold-500' : 'text-stone-400 hover:text-obsidian'
       }`}
     >
       {label}
       {activeTab === id && (
         <motion.div 
           layoutId="activeTab" 
-          className="absolute bottom-0 left-4 right-4 h-0.5 bg-amber-600"
+          className="absolute bottom-0 left-4 right-4 h-[1px] bg-gold-500"
         />
       )}
     </button>
   );
 
   return (
-    <div className="min-h-screen flex flex-col selection:bg-amber-100 selection:text-amber-900 overflow-x-hidden">
+    <div className="min-h-screen flex flex-col selection:bg-gold-100 selection:text-gold-900 overflow-x-hidden bg-parchment">
       {/* Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-6'
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'bg-white/80 backdrop-blur-xl shadow-[0_2px_20px_-10px_rgba(0,0,0,0.1)] py-4' : 'bg-transparent py-8'
       }`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="text-2xl font-bold tracking-tighter serif cursor-pointer" onClick={() => setActiveTab('home')}>
-            MIDWAY <span className="text-amber-600 underline decoration-stone-200">MEWS</span>
+          <div className="text-2xl font-bold tracking-tighter serif cursor-pointer group" onClick={() => setActiveTab('home')}>
+            MIDWAY <span className="text-gold-500 group-hover:text-obsidian transition-colors">MEWS</span>
           </div>
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className="hidden md:flex items-center space-x-4">
             <NavItem id="home" label="Welcome" />
             <NavItem id="services" label="Services" />
             <NavItem id="portfolio" label="Gallery" />
             <NavItem id="contact" label="Contact" />
             <a 
               href="tel:+27110000000"
-              className="ml-4 bg-stone-900 text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-amber-600 transition-all shadow-lg uppercase tracking-widest"
+              className="ml-6 border border-obsidian text-obsidian px-8 py-2.5 rounded-full text-[11px] font-bold hover:bg-obsidian hover:text-white transition-all shadow-sm uppercase tracking-[0.2em]"
             >
               Call To Book
             </a>
@@ -64,7 +64,7 @@ const App: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow pt-12">
+      <main className="flex-grow pt-16">
         <AnimatePresence mode="wait">
           {activeTab === 'home' && (
             <motion.section 
@@ -72,56 +72,64 @@ const App: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="px-6 py-12 md:py-24"
+              className="px-6 py-20 md:py-32"
             >
-              <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+              <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
                 <motion.div
-                  initial={{ x: -50, opacity: 0 }}
+                  initial={{ x: -40, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.2 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                  <span className="text-amber-600 font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">Midrand • Halfway Gardens • Johannesburg</span>
-                  <h1 className="text-6xl md:text-8xl font-bold leading-[1] mb-8 serif">
-                    Exquisite <br />
-                    <span className="italic font-light text-stone-300">Beauty</span>
+                  <span className="text-gold-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-8 block">Johannesburg • Midrand</span>
+                  <h1 className="text-7xl md:text-9xl font-bold leading-[0.9] mb-10 serif text-obsidian">
+                    Timeless <br />
+                    <span className="italic font-light text-stone-300">Artistry</span>
                   </h1>
-                  <p className="text-lg text-stone-500 mb-10 leading-relaxed max-w-lg">
-                    Midway Mews hair beauty salon is your premier destination for hair artistry in Midrand. From intricate braids and locs to luminous balayage, we celebrate every texture.
+                  <p className="text-lg text-stone-500 mb-12 leading-relaxed max-w-md font-light">
+                    Midway Mews is a boutique hair sanctuary where tradition meets contemporary innovation. We craft bespoke looks that honor your unique natural beauty.
                   </p>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-6">
                     <button 
                       onClick={() => setActiveTab('services')}
-                      className="bg-stone-900 text-white px-10 py-5 rounded-full font-bold hover:bg-amber-600 transition-all shadow-2xl flex items-center space-x-2"
+                      className="bg-obsidian text-white px-12 py-5 rounded-full font-bold hover:bg-gold-500 transition-all shadow-xl flex items-center space-x-3 text-xs tracking-[0.2em]"
                     >
-                      <span>View Services</span>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                      <span>EXPLORE SERVICES</span>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </button>
                     <button 
                       onClick={() => setActiveTab('contact')}
-                      className="border-2 border-stone-200 bg-white text-stone-900 px-10 py-5 rounded-full font-bold hover:bg-stone-50 transition-all"
+                      className="border border-stone-200 bg-transparent text-obsidian px-12 py-5 rounded-full font-bold hover:border-obsidian transition-all text-xs tracking-[0.2em]"
                     >
-                      Find Us
+                      OUR LOCATION
                     </button>
                   </div>
                 </motion.div>
 
                 <motion.div 
-                  initial={{ scale: 0.95, opacity: 0 }}
+                  initial={{ scale: 0.98, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 1 }}
-                  className="relative"
+                  transition={{ duration: 1.2 }}
+                  className="relative group"
                 >
-                  <div className="grid grid-cols-2 gap-4 h-[600px]">
-                    <div className="space-y-4 pt-12">
-                      <img src="https://images.unsplash.com/photo-1649931754013-176840733d31?auto=format&fit=crop&q=80&w=600" className="w-full h-[45%] object-cover rounded-2xl shadow-lg" alt="Braiding Mastery" />
-                      <img src="https://images.unsplash.com/photo-1605980776566-0486c3ac7617?auto=format&fit=crop&q=80&w=600" className="w-full h-[45%] object-cover rounded-2xl shadow-lg" alt="Locs Maintenance" />
+                  <div className="grid grid-cols-2 gap-6 h-[650px]">
+                    <div className="space-y-6 pt-16">
+                      <div className="overflow-hidden rounded-3xl shadow-2xl h-[45%]">
+                        <img src="https://images.unsplash.com/photo-1649931754013-176840733d31?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700" alt="Braiding Mastery" />
+                      </div>
+                      <div className="overflow-hidden rounded-3xl shadow-2xl h-[45%]">
+                        <img src="https://images.unsplash.com/photo-1605980776566-0486c3ac7617?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700" alt="Locs Maintenance" />
+                      </div>
                     </div>
-                    <div className="space-y-4">
-                      <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=600" className="w-full h-[60%] object-cover rounded-2xl shadow-lg" alt="Professional Color" />
-                      <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=600" className="w-full h-[30%] object-cover rounded-2xl shadow-lg" alt="Curly Hair Styling" />
+                    <div className="space-y-6">
+                      <div className="overflow-hidden rounded-3xl shadow-2xl h-[60%]">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700" alt="Professional Color" />
+                      </div>
+                      <div className="overflow-hidden rounded-3xl shadow-2xl h-[30%]">
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700" alt="Curly Hair Styling" />
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-amber-50 rounded-full -z-10 animate-pulse"></div>
+                  <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-gold-50/50 rounded-full -z-10 blur-3xl animate-pulse"></div>
                 </motion.div>
               </div>
             </motion.section>
@@ -130,36 +138,37 @@ const App: React.FC = () => {
           {activeTab === 'services' && (
             <motion.section 
               key="services"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              className="px-6 py-20 max-w-7xl mx-auto"
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.6 }}
+              className="px-6 py-24 max-w-7xl mx-auto"
             >
-              <div className="text-center mb-20">
-                <span className="text-amber-600 font-bold uppercase tracking-widest text-xs">Midrand's Finest</span>
-                <h2 className="text-4xl md:text-5xl font-bold serif mt-4 mb-4">Our Specialties</h2>
-                <div className="w-20 h-1 bg-amber-600 mx-auto rounded-full"></div>
+              <div className="text-center mb-24">
+                <span className="text-gold-500 font-bold uppercase tracking-[0.5em] text-[10px] block mb-6">The Rituals</span>
+                <h2 className="text-5xl md:text-6xl font-bold serif mt-4 mb-6 text-obsidian">Curated Treatments</h2>
+                <div className="w-16 h-[1px] bg-gold-300 mx-auto"></div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 {SERVICES.map((service, idx) => (
                   <motion.div 
                     key={service.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.1 }}
-                    className="bg-white group rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-stone-100"
+                    className="group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 border border-stone-50"
                   >
-                    <div className="h-72 overflow-hidden relative">
+                    <div className="h-80 overflow-hidden relative">
                       <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                      <div className="absolute inset-0 bg-obsidian/10 group-hover:bg-transparent transition-colors duration-700"></div>
                     </div>
-                    <div className="p-8">
-                      <h3 className="text-xl font-bold mb-3 serif">{service.title}</h3>
-                      <p className="text-stone-400 text-sm mb-6 leading-relaxed">{service.description}</p>
-                      <div className="flex justify-between items-center border-t border-stone-50 pt-6">
-                        <span className="text-lg font-bold text-stone-900">{service.price}</span>
-                        <a href="tel:+27110000000" className="text-amber-600 text-xs font-bold hover:tracking-widest transition-all flex items-center space-x-2">
-                          <span>CALL TO BOOK</span>
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <div className="p-10">
+                      <h3 className="text-2xl font-bold mb-4 serif text-obsidian">{service.title}</h3>
+                      <p className="text-stone-400 text-sm mb-8 leading-relaxed font-light">{service.description}</p>
+                      <div className="flex justify-between items-center pt-6 border-t border-stone-50">
+                        <span className="text-lg font-bold text-obsidian">{service.price}</span>
+                        <a href="tel:+27110000000" className="group/btn relative overflow-hidden text-gold-500 text-[10px] font-bold tracking-[0.3em] uppercase">
+                          <span className="relative z-10">BOOK VISIT</span>
                         </a>
                       </div>
                     </div>
@@ -175,23 +184,23 @@ const App: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="px-6 py-20 bg-white"
+              className="px-6 py-24 bg-white"
             >
               <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-10">
                   <div>
-                    <span className="text-amber-600 font-bold uppercase tracking-[0.4em] text-[10px] block mb-4">Style Collective</span>
-                    <h2 className="text-4xl md:text-6xl font-bold serif">Signature Gallery</h2>
+                    <span className="text-gold-500 font-bold uppercase tracking-[0.6em] text-[10px] block mb-6">Collections</span>
+                    <h2 className="text-5xl md:text-7xl font-bold serif text-obsidian">Aesthetic Portfolio</h2>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-4">
                     {galleryTags.map(tag => (
                       <button
                         key={tag}
                         onClick={() => setGalleryFilter(tag)}
-                        className={`px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all border ${
+                        className={`px-8 py-3 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase transition-all border ${
                           galleryFilter === tag 
-                          ? 'bg-stone-900 text-white border-stone-900 shadow-xl' 
-                          : 'bg-white text-stone-400 border-stone-100 hover:border-amber-200 hover:text-stone-800'
+                          ? 'bg-obsidian text-white border-obsidian shadow-lg' 
+                          : 'bg-transparent text-stone-400 border-stone-100 hover:border-gold-200 hover:text-obsidian'
                         }`}
                       >
                         {tag}
@@ -202,29 +211,29 @@ const App: React.FC = () => {
 
                 <motion.div 
                   layout
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[350px]"
                 >
                   <AnimatePresence mode="popLayout">
                     {filteredGallery.map((item, index) => (
                       <motion.div
                         key={item.id}
                         layout
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.4, delay: index * 0.05 }}
-                        className={`relative group overflow-hidden rounded-[2rem] shadow-sm hover:shadow-2xl transition-all cursor-pointer ${
-                          index % 4 === 0 ? 'md:row-span-2' : ''
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                        className={`relative group overflow-hidden rounded-[2.5rem] bg-stone-100 ${
+                          index % 5 === 0 ? 'md:col-span-2 md:row-span-2' : ''
                         }`}
                       >
                         <img 
                           src={item.image} 
                           alt={item.title} 
-                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[0.3] group-hover:grayscale-0" 
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                          <span className="text-amber-400 text-[10px] font-black uppercase tracking-[0.4em] mb-2">{item.tag}</span>
-                          <h4 className="text-white text-2xl font-bold serif leading-tight">{item.title}</h4>
+                        <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-10">
+                          <span className="text-gold-400 text-[9px] font-black uppercase tracking-[0.5em] mb-3">{item.tag}</span>
+                          <h4 className="text-white text-3xl font-bold serif leading-tight">{item.title}</h4>
                         </div>
                       </motion.div>
                     ))}
@@ -237,34 +246,35 @@ const App: React.FC = () => {
           {activeTab === 'contact' && (
             <motion.section 
               key="contact"
-              initial={{ opacity: 0, scale: 0.98 }}
+              initial={{ opacity: 0, scale: 0.99 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              className="px-6 py-24"
+              className="px-6 py-32"
             >
-              <div className="max-w-5xl mx-auto bg-white rounded-[3rem] shadow-2xl overflow-hidden grid md:grid-cols-2">
-                <div className="p-12 md:p-20 bg-stone-900 text-white flex flex-col justify-center">
-                  <h2 className="text-4xl font-bold serif mb-8">Locate Us</h2>
-                  <div className="space-y-10">
-                    <div>
-                      <h4 className="text-amber-600 uppercase text-xs tracking-widest font-bold mb-2">Address</h4>
-                      <p className="text-stone-300">595 Seventh Rd, Halfway Gardens<br />Midrand, 1686, South Africa</p>
-                      <a href="https://maps.google.com/?q=595+Seventh+Rd+Halfway+Gardens+Midrand" target="_blank" className="text-amber-400 text-xs font-bold mt-2 inline-block uppercase tracking-widest hover:underline">Get Directions</a>
+              <div className="max-w-6xl mx-auto bg-white rounded-[4rem] shadow-[0_40px_100px_rgba(0,0,0,0.08)] overflow-hidden grid md:grid-cols-2">
+                <div className="p-16 md:p-24 bg-obsidian text-white flex flex-col justify-center">
+                  <span className="text-gold-500 font-bold uppercase tracking-[0.5em] text-[10px] block mb-10">THE BOUTIQUE</span>
+                  <h2 className="text-5xl font-bold serif mb-12">Connect With Us</h2>
+                  <div className="space-y-12">
+                    <div className="group">
+                      <h4 className="text-stone-500 uppercase text-[10px] tracking-[0.4em] font-bold mb-4 group-hover:text-gold-500 transition-colors">OUR ADDRESS</h4>
+                      <p className="text-stone-300 font-light leading-relaxed">595 Seventh Rd, Halfway Gardens<br />Midrand, 1686, South Africa</p>
+                      <a href="https://maps.google.com/?q=595+Seventh+Rd+Halfway+Gardens+Midrand" target="_blank" className="text-gold-500 text-[10px] font-bold mt-4 inline-block uppercase tracking-[0.3em] hover:tracking-[0.4em] transition-all">Open In Maps</a>
                     </div>
                     <div>
-                      <h4 className="text-amber-600 uppercase text-xs tracking-widest font-bold mb-2">Inquiries</h4>
-                      <p className="text-stone-300">Midway Mews hair beauty salon</p>
-                      <p className="text-stone-300 mt-1 font-bold">Call to book: (011) XXX-XXXX</p>
+                      <h4 className="text-stone-500 uppercase text-[10px] tracking-[0.4em] font-bold mb-4">INQUIRIES</h4>
+                      <p className="text-gold-500 text-2xl font-bold mb-1">(011) XXX-XXXX</p>
+                      <p className="text-stone-400 text-sm font-light italic">Call to secure your session</p>
                     </div>
                     <div>
-                      <h4 className="text-amber-600 uppercase text-xs tracking-widest font-bold mb-2">Opening Times</h4>
-                      <div className="grid grid-cols-2 gap-4 text-xs text-stone-400">
-                        <div>
+                      <h4 className="text-stone-500 uppercase text-[10px] tracking-[0.4em] font-bold mb-6">TRADING HOURS</h4>
+                      <div className="grid grid-cols-2 gap-8 text-[11px] text-stone-400">
+                        <div className="space-y-2">
                           <p>MONDAY</p>
                           <p>TUE — SAT</p>
                           <p>SUNDAY</p>
                         </div>
-                        <div className="text-white font-medium">
+                        <div className="text-white font-medium space-y-2">
                           <p>09:00 — 18:00</p>
                           <p>08:00 — 18:00</p>
                           <p>08:30 — 17:00</p>
@@ -273,26 +283,25 @@ const App: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="p-12 md:p-20 flex flex-col justify-center">
-                  <h3 className="text-2xl font-bold serif mb-8 text-stone-800">Send a Message</h3>
-                  <form className="space-y-6" onSubmit={e => e.preventDefault()}>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Your Name</label>
-                      <input type="text" className="w-full border-b border-stone-200 py-2 focus:border-amber-600 outline-none transition-colors" placeholder="Full Name" />
+                <div className="p-16 md:p-24 flex flex-col justify-center bg-parchment/30">
+                  <h3 className="text-3xl font-bold serif mb-10 text-obsidian">Reserve Your Time</h3>
+                  <form className="space-y-8" onSubmit={e => e.preventDefault()}>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-400">YOUR NAME</label>
+                      <input type="text" className="w-full border-b border-stone-200 bg-transparent py-3 focus:border-gold-500 outline-none transition-colors font-light placeholder:text-stone-300" placeholder="E.g. Alexander McQueen" />
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400">Treatment of Interest</label>
-                      <select className="w-full border-b border-stone-200 py-2 focus:border-amber-600 outline-none transition-colors bg-transparent">
-                        <option>Balayage</option>
-                        <option>Hair Braiding</option>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-400">TREATMENT</label>
+                      <select className="w-full border-b border-stone-200 bg-transparent py-3 focus:border-gold-500 outline-none transition-colors font-light appearance-none">
+                        <option>Balayage & Styling</option>
+                        <option>Bespoke Braiding</option>
                         <option>Locs Maintenance</option>
-                        <option>Weaves & Extensions</option>
-                        <option>Women's Haircut</option>
+                        <option>Professional Cut</option>
                       </select>
                     </div>
-                    <div className="pt-6">
-                      <button className="w-full bg-stone-900 text-white py-5 rounded-full font-bold hover:bg-amber-600 transition-all shadow-xl">
-                        Send Inquiry
+                    <div className="pt-10">
+                      <button className="w-full bg-obsidian text-white py-6 rounded-full font-bold hover:bg-gold-500 transition-all shadow-2xl text-[11px] tracking-[0.3em] uppercase">
+                        SUBMIT INQUIRY
                       </button>
                     </div>
                   </form>
@@ -304,43 +313,47 @@ const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-stone-50 border-t border-stone-100 py-16 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+      <footer className="bg-obsidian text-white py-24 px-6 mt-12">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
           <div className="col-span-1 md:col-span-2">
-            <div className="text-2xl font-bold tracking-tighter serif mb-6">
-              MIDWAY <span className="text-amber-600">MEWS</span>
+            <div className="text-3xl font-bold tracking-tighter serif mb-8">
+              MIDWAY <span className="text-gold-500">MEWS</span>
             </div>
-            <p className="max-w-md text-stone-400 mb-8 leading-relaxed">
-              Experience professional hair care in the heart of Midrand. From modern styles to traditional artistry, Midway Mews hair beauty salon welcomes you.
+            <p className="max-w-sm text-stone-400 mb-12 leading-relaxed font-light text-sm italic">
+              "Redefining the standard of beauty in Midrand since 1995. Our commitment to excellence is reflected in every mirror."
             </p>
-            <div className="flex space-x-8">
-              {['FACEBOOK', 'INSTAGRAM', 'TWITTER'].map(social => (
-                <a key={social} href="#" className="hover:text-amber-600 transition-colors text-[10px] font-bold uppercase tracking-[0.2em]">{social}</a>
+            <div className="flex space-x-10">
+              {['INSTAGRAM', 'FACEBOOK', 'X'].map(social => (
+                <a key={social} href="#" className="text-stone-500 hover:text-gold-500 transition-colors text-[10px] font-bold uppercase tracking-[0.4em]">{social}</a>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="text-stone-900 font-bold mb-6 uppercase tracking-widest text-xs">Midrand Community</h4>
-            <ul className="space-y-4 text-stone-400 text-sm">
-              <li><button onClick={() => setActiveTab('services')} className="hover:text-amber-600 transition-colors">Treatments</button></li>
-              <li><button onClick={() => setActiveTab('portfolio')} className="hover:text-amber-600 transition-colors">Style Gallery</button></li>
-              <li><button onClick={() => setActiveTab('contact')} className="hover:text-amber-600 transition-colors">Find Us</button></li>
+            <h4 className="text-gold-500 font-bold mb-8 uppercase tracking-[0.3em] text-[10px]">DIRECTORY</h4>
+            <ul className="space-y-5 text-stone-400 text-xs font-light tracking-wider">
+              <li><button onClick={() => setActiveTab('services')} className="hover:text-white transition-colors">SERVICES MENU</button></li>
+              <li><button onClick={() => setActiveTab('portfolio')} className="hover:text-white transition-colors">CLIENT GALLERY</button></li>
+              <li><button onClick={() => setActiveTab('contact')} className="hover:text-white transition-colors">THE BOUTIQUE</button></li>
+              <li><a href="#" className="hover:text-white transition-colors">CAREERS</a></li>
             </ul>
           </div>
-          <div className="bg-white p-8 rounded-[2rem] shadow-sm">
-            <h4 className="text-stone-900 font-bold mb-4 text-sm">Stay Updated</h4>
-            <p className="text-xs text-stone-400 mb-6">Receive beauty tips and seasonal offers directly from our Midrand boutique.</p>
+          <div className="bg-stone-900/50 p-10 rounded-[2.5rem] border border-stone-800">
+            <h4 className="text-white font-bold mb-6 text-xs tracking-[0.2em] uppercase">PRIVATE CIRCLE</h4>
+            <p className="text-[11px] text-stone-400 mb-8 font-light leading-relaxed">Join our mailing list for seasonal invitations and style previews.</p>
             <div className="relative">
-              <input type="email" placeholder="Email Address" className="w-full bg-stone-50 border border-stone-100 rounded-full px-5 py-3 text-xs outline-none focus:border-amber-600" />
-              <button className="absolute right-2 top-2 w-8 h-8 bg-stone-900 text-white rounded-full flex items-center justify-center hover:bg-amber-600 transition-colors">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <input type="email" placeholder="YOUR EMAIL" className="w-full bg-stone-900 border-b border-stone-700 py-3 text-[10px] outline-none focus:border-gold-500 text-white placeholder:text-stone-600 tracking-widest" />
+              <button className="absolute right-0 top-2 text-gold-500 hover:text-white transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto border-t border-stone-100 mt-16 pt-8 text-[10px] font-bold uppercase tracking-widest text-stone-300 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>© 2026 Midway Mews hair beauty salon • Halfway Gardens, Midrand</p>
-          <p>Powered by Fresha Community • Johannesburg</p>
+        <div className="max-w-7xl mx-auto border-t border-stone-800/50 mt-20 pt-10 text-[9px] font-bold uppercase tracking-[0.5em] text-stone-600 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p>© 2026 MIDWAY MEWS SALON • MIDRAND SOUTH AFRICA</p>
+          <div className="flex space-x-8">
+            <a href="#" className="hover:text-stone-400">PRIVACY</a>
+            <a href="#" className="hover:text-stone-400">TERMS</a>
+          </div>
         </div>
       </footer>
     </div>
